@@ -1,0 +1,116 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --backgroundColor: #5c7aea;
+  --inputRadius: 0.25rem;
+  --formBackground: #FEFBF3;
+}
+
+body {
+  background-color: var(--backgroundColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  color: white;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+#app {
+  min-width: 500px;
+}
+
+#app > h1 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+input {
+  border-radius: var(--inputRadius);
+  padding: 0.5em;
+  border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.form-group + .form-group {
+  margin-top: 0.8em;
+}
+
+.login {
+  background-color: var(--formBackground);
+  padding: 2em;
+  border-radius: 5px;
+}
+
+.login > h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #064ACB;
+}
+
+button {
+  background-color: var(--backgroundColor);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.5em;
+  /* margin-top: 1em; */
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: #5c7beac2;
+}
+
+#loginButton {
+  margin-top: .5em;
+}
+
+#registerButton {
+  margin-top: .5em;
+}
+
+hr {
+  margin-bottom: 1em;
+}
+
+#loginForm {
+  margin-bottom: 1em;
+}
+
+#registerForm > h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #064ACB;
+  margin-bottom: 1em;
+}
+
+#loginError {
+  display: none;
+  color: red;
+  font-weight: bold;
+  padding: 1em 0;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Banking App</title>
+  </head>
+
+  <body>
+    <div id="app">Loading...</div>
+
+    <!-- Login Page -->
+    <template id="login">
+      <h1>Bank App</h1>
+      <section class="login">
+        <h2>Login</h2>
+        <form id="loginForm" action="javascript:login()">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="user" type="text" />
+          </div>
+          
+          <div id="loginError"></div>
+          <button id="loginButton">Login</button>
+        </form>
+        <hr>
+        <form id="registerForm" action="javascript:register()">
+          <h2>Register</h2>
+          <div class="form-group">
+            <label for="user">Username</label>
+            <input id="user" name="user" type="text" maxlength="20" required />
+          </div>
+
+          <div class="form-group">
+            <label for="currency">Currency</label>
+            <input id="currency" name="currency" type="text" value="$" maxlength="5" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input id="description" name="description" type="text" maxlength="100" />
+          </div>
+          
+          <div class="form-group">
+            <label for="balance">Current balance</label>
+            <input id="balance" name="balance" type="number" value="0" />
+          </div>
+          
+          <button id="registerButton">Register</button>
+        </form>
+      </section>
+    </template>
+
+    <!-- Dashboard Page -->
+    <template id="dashboard">
+      <header>
+        <h1>Bank App</h1>
+        <a href="/login" onclick="onLinkClick(event)">Logout</a>
+      </header>
+      <section>
+        <h2>Transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Object</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </template>
+  </body>
+</html>
