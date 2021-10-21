@@ -6,7 +6,7 @@ let account = null;
 
 const routes = {
   "/login": { templateId: "login" },
-  "/dashboard": { templateId: "dashboard" },
+  "/dashboard": { templateId: "dashboard", init: updateDashboard },
 };
 
 function navigate(path) {
@@ -25,10 +25,10 @@ function onLinkClick(event) {
 // ------------------------------------------
 // Update Element
 // ------------------------------------------
-function updateElement(id, text) {
+function updateElement(id, textOrNode) {
   const element = document.getElementById(id);
-  element.style.display = "block";
-  element.textContent = text;
+  element.textContent = ""; // Removes all children
+  element.append(textOrNode);
 }
 
 // ------------------------------------------
@@ -37,9 +37,7 @@ function updateElement(id, text) {
 function register() {
   const registerForm = document.getElementById("registerForm");
   const formData = new FormData(registerForm);
-  console.log("Form Data:", formData);
   const data = Object.fromEntries(formData);
-  console.log("Data:", data);
   const jsonData = JSON.stringify(data);
   const result = createAccount(jsonData);
 
@@ -96,6 +94,39 @@ async function getAccount(user) {
 }
 
 // ------------------------------------------
+// Update Dashboard
+// ------------------------------------------
+function updateDashboard() {
+  if (!account) {
+    return navigate("/login");
+  }
+
+  updateElement("description", account.description);
+  updateElement("balance", account.balance.toFixed(2));
+  updateElement("currency", account.currency);
+
+  const transactionsRow = document.createDocumentFragment();
+  for (const transaction of account.transactions) {
+    const transactionRow = createTransactionRow(transaction);
+    transactionsRow.appendChild(transactionRow);
+  }
+  updateElement("transactions", transactionsRow);
+}
+
+// ------------------------------------------
+// Create Transaction Row
+// ------------------------------------------
+function createTransactionRow(transaction) {
+  const template = document.getElementById("transaction");
+  const transactionRow = template.content.cloneNode(true);
+  const tr = transactionRow.querySelector("tr");
+  tr.children[0].textContent = transaction.date;
+  tr.children[1].textContent = transaction.object;
+  tr.children[2].textContent = transaction.amount.toFixed(2);
+  return transactionRow;
+}
+
+// ------------------------------------------
 // Route Handling
 // ------------------------------------------
 function updateRoute() {
@@ -111,6 +142,10 @@ function updateRoute() {
   const app = document.getElementById("app");
   app.innerHTML = "";
   app.appendChild(view);
+
+  if (typeof route.init === "function") {
+    route.init();
+  }
 }
 
 window.onpopstate = () => updateRoute();

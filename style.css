@@ -28,6 +28,21 @@ label {
   font-size: 13px;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
 #app {
   min-width: 500px;
 }
@@ -109,8 +124,64 @@ hr {
 }
 
 #loginError {
-  display: none;
+  /* display: none; */
   color: red;
   font-weight: bold;
   padding: 1em 0;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  background-color: #191A19;
+}
+
+#logoutButton {
+  display: block;
+  padding: .5em 1em;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+
+#logoutButton:hover {
+  background-color: #497a496c;
+}
+
+.balance {
+  background-color: #406343;
+  color: white;
+  padding: 1em;
+}
+
+.transactions-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#addTransactionButton {
+  width: initial;
+  font-size: 0.8rem;
+  padding: 1em;
+}
+
+.transaction-content {
+  background-color: var(--formBackground);
+  padding: 1em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.balance > #balance {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.balance > #currency {
+  font-size: 2rem;
+  font-weight: 700;
 }

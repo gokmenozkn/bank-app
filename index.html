@@ -23,7 +23,7 @@
             <input id="username" name="user" type="text" />
           </div>
           
-          <div id="loginError"></div>
+          <div id="loginError" role="alert"></div>
           <button id="loginButton">Login</button>
         </form>
         <hr>
@@ -56,12 +56,20 @@
 
     <!-- Dashboard Page -->
     <template id="dashboard">
-      <header>
+      <header class="dashboard-header">
         <h1>Bank App</h1>
-        <a href="/login" onclick="onLinkClick(event)">Logout</a>
+        <a href="/login" id="logoutButton" onclick="onLinkClick(event)">Logout</a>
       </header>
-      <section>
-        <h2>Transactions</h2>
+      <div class="balance text-center">
+        <div>Balance</div>
+        <span id="balance"></span>
+        <span id="currency"></span>
+      </div>
+      <section class="transaction-content">
+        <div class="transactions-title">
+          <h2 id="description"></h2>
+          <button id="addTransactionButton" onclick="addTransaction()">Add transaction</button>
+        </div>
         <table>
           <thead>
             <tr>
@@ -70,9 +78,19 @@
               <th>Amount</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody id="transactions"></tbody>
         </table>
       </section>
     </template>
+
+    <!-- Transactions row template -->
+    <template id="transaction">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+
   </body>
 </html>
